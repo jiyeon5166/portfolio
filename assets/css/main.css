@@ -205,7 +205,7 @@ section,
 }
 .section-title {
   text-align: center;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   position: relative;
 }
 .section-title h2 {
@@ -226,9 +226,6 @@ section,
   right: 0;
   bottom: 0;
   margin: auto;
-}
-.section-title p {
-  margin-bottom: 0;
 }
 .hero.section { padding: 0; }
 
@@ -327,7 +324,6 @@ section,
   .hero h2 {
     font-size: 32px;
   }
-
   .hero p {
     font-size: 20px;
   }
@@ -338,6 +334,7 @@ section,
     width: 18px;
   }
 }
+
 
 /* profile Section */
 .about .content h2 {
@@ -365,6 +362,28 @@ section,
   margin-right: 5px;
   color: var(--accent-color);
   line-height: 0;
+}
+.basic ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 두 개 열 */
+  column-gap: 10px;              /* 열 사이 간격 */
+}
+
+.basic li {
+  display: flex;                 /* 라벨 + 값 나란히 */
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.basic li b {
+  width: 70px;                   /* 라벨 고정 폭 */
+  color: #888;                   /* 연한 색 */
+  font-weight: normal;
+  margin-right: 10px;            /* 라벨과 값 간격 */
 }
 
 /* Project Section */
