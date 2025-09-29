@@ -37,23 +37,12 @@
 }
 
 /* color */
-:root { 
-  --background-color: #ffffff;
+:root {
+  --white: #ffffff;
   --default-color: #272829;
   --heading-color: #45505b; 
   --accent-color: #0563bb;
-  --surface-color: #ffffff;
-  --contrast-color: #ffffff;
 }
-:root {
-  --nav-color: #45505b;
-  --nav-hover-color: #0563bb;
-  --nav-mobile-background-color: #ffffff;
-  --nav-dropdown-background-color: #ffffff;
-  --nav-dropdown-color: #212529;
-  --nav-dropdown-hover-color: #0563bb;
-}
-
 :root{
   /* 브랜드 팔레트: Professional Base + Accent */
   --text-strong:#1A1D23;     /* 다크 네이비 */
@@ -63,8 +52,6 @@
   --accent-red:#B72C28;      /* Coleman Red (포인트) */
   --hero-bg:#F8F9FA;         /* 라이트 베이스 */
 }
-
 :root {
   scroll-behavior: smooth;
 }
-
