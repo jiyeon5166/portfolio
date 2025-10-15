@@ -379,34 +379,24 @@ margin-bottom: 18px;
   margin-right: 1px;
 }
 
-
-
-
-
-
-
-.basic ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 두 개 열 */
-  column-gap: 10px;              /* 열 사이 간격 */
+.about .container .skills-img {
+   display: flex;
+  justify-content: center; /* 가로 방향 가운데 정렬 */
+  flex-wrap: wrap;         /* 줄바꿈 허용 */
+  gap: 16px;               /* 이미지 간격 */
+  align-items: center;     /* 세로 정렬 (필요시) */
+}
+.about .container .skills .skills-img img {
+  width: 100px;
+  margin-right: 20px;
 }
 
-.basic li {
-  display: flex;                 /* 라벨 + 값 나란히 */
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #333;
-}
 
-.basic li b {
-  width: 70px;                   /* 라벨 고정 폭 */
-  color: #888;                   /* 연한 색 */
-  font-weight: normal;
-  margin-right: 10px;            /* 라벨과 값 간격 */
-}
+
+
+
+
+
 
 
 /* Project Section */
