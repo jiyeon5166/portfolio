@@ -205,7 +205,7 @@ section,
 }
 .section-title {
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   position: relative;
 }
 .section-title h2 {
@@ -378,13 +378,19 @@ margin-bottom: 18px;
   width: 60px;
   margin-right: 1px;
 }
-
+.about .container .skills h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--default-color);
+    margin: 20px 0 ;
+}
 .about .container .skills-img {
-   display: flex;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;       
-  gap: 16px;             
-  align-items: center;    
+  align-items: center;
+  gap: 18px;   
 }
 .about .container .skills .skills-img img {
   width: 100px;
