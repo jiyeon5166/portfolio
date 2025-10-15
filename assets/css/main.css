@@ -323,14 +323,14 @@ section,
 .about .content h2 {
   font-weight: 700;
   font-size: 32px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: var(--default-color);
 }
 .about .content h2 b {
   color: var(--accent-color);
 }
 .about .content .row {
-  margin: 0 auto;
+margin-bottom: 20px;
 }
 .about .content ul {
   list-style: none;
@@ -342,11 +342,9 @@ section,
   display: flex;
   align-items: center;
 }
-
 .about .content ul strong {
   margin-right: 10px;
 }
-
 .about .content ul i {
   font-size: 16px;
   margin-right: 5px;
@@ -356,16 +354,14 @@ section,
 .about .content .info-detail {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 50px;
 }
-
 .about .content .info-detail .license,
-.about .content .info-detail .education
- {
+.about .content .info-detail .education {
   background-color: var(--white);
   padding: 20px 30px;
   border-radius: 20px;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .about .content .info-detail h3 {
@@ -374,17 +370,13 @@ section,
   letter-spacing: -0.04em;
   color: var(--default-color);
   margin-bottom: 20px;
-
-
 }
 .about .content .info-detail .license p span,
 .about .content .info-detail .education p span {
-
-
-color: #a3a3a3;
-    display: inline-block;
-    width: 60px;
-    margin-right: 1px;
+  color: #a3a3a3;
+  display: inline-block;
+  width: 60px;
+  margin-right: 1px;
 }
 
 
