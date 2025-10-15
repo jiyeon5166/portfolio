@@ -329,10 +329,13 @@ section,
 .about .content h2 b {
   color: var(--accent-color);
 }
-
+.about .content .row {
+  margin: 0 auto;
+}
 .about .content ul {
   list-style: none;
   padding: 0;
+
 }
 
 .about .content ul li {
