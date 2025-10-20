@@ -1,63 +1,7 @@
-/**
-* Template Name: MyResume
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Updated: Jun 29 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
-  /**
-   * Header toggle
-   */
-  const headerToggleBtn = document.querySelector('.header-toggle');
-
-  function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
-    headerToggleBtn.classList.toggle('bi-list');
-    headerToggleBtn.classList.toggle('bi-x');
-  }
-  headerToggleBtn.addEventListener('click', headerToggle);
-
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.header-show')) {
-        headerToggle();
-      }
-    });
-
-  });
-
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-
-  /**
-   * Preloader
-   */
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
-  }
-
-  /**
-   * Scroll top button
-   */
+  // Scroll top button
   let scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
@@ -76,9 +20,7 @@
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  /**
-   * Animation on scroll function and init
-   */
+  // Animation on scroll function and init
   function aosInit() {
     AOS.init({
       duration: 600,
@@ -89,9 +31,7 @@
   }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Init typed.js
-   */
+  // Init typed.js
   const selectTyped = document.querySelector('.typed');
   if (selectTyped) {
     let typed_strings = selectTyped.getAttribute('data-typed-items');
@@ -105,14 +45,10 @@
     });
   }
 
-  /**
-   * Initiate Pure Counter
-   */
+  // Initiate Pure Counter
   new PureCounter();
 
-  /**
-   * Animate the skills items on reveal
-   */
+  // Animate the skills items on reveal
   let skillsAnimation = document.querySelectorAll('.skills-animation');
   skillsAnimation.forEach((item) => {
     new Waypoint({
@@ -127,16 +63,12 @@
     });
   });
 
-  /**
-   * Initiate glightbox
-   */
+  //Initiate glightbox
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
 
-  /**
-   * Init isotope layout and filters
-   */
+  // Init isotope layout and filters
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
@@ -167,9 +99,7 @@
 
   });
 
-  /**
-   * Init swiper sliders
-   */
+  // Init swiper sliders
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
       let config = JSON.parse(
@@ -186,9 +116,7 @@
 
   window.addEventListener("load", initSwiper);
 
-  /**
-   * Correct scrolling position upon page load for URLs containing hash links.
-   */
+  // Correct scrolling position upon page load for URLs containing hash links.
   window.addEventListener('load', function(e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
@@ -204,9 +132,7 @@
     }
   });
 
-  /**
-   * Navmenu Scrollspy
-   */
+  // Navmenu Scrollspy
   let navmenulinks = document.querySelectorAll('.navmenu a');
 
   function navmenuScrollspy() {
@@ -225,5 +151,91 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+
+  //nav hover 시 글씨 나타나기
+  const nav = document.querySelector('nav')
+  const nav_a = nav.querySelectorAll('nav > a')
+  for(let i of nav_a){
+      i.addEventListener('mouseover',(e)=>{
+          e.preventDefault();
+          i.children[0].style.marginLeft = '0';
+          i.children[0].style.opacity = '1'
+      })
+      i.addEventListener('mouseout',(e)=>{
+          e.preventDefault();
+          i.children[0].style.marginLeft = '-24px';
+          i.children[0].style.opacity = '0'
+      })
+  }
+
+    // nav 링크와 타깃 섹션 매핑
+  const navLinks = [...document.querySelectorAll('nav a')];
+  const sections = navLinks
+    .map(a => document.querySelector(a.getAttribute('href'))) // #home 등
+    .filter(Boolean);
+
+  // 관찰 옵션: 뷰포트 중앙 근처에 들어오면 active
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const link = document.querySelector(`nav a[href="#${id}"]`);
+      if (!link) return;
+
+      if (entry.isIntersecting) {
+        // 모두 제거 후 현재만 active
+        navLinks.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, {
+    root: null,
+    // 섹션의 중앙이 보일 때 반응하도록 여백 조정
+    rootMargin: '-40% 0px -40% 0px',
+    threshold: 0.0
+  });
+
+  sections.forEach(sec => io.observe(sec));
+
+  // (선택) 페이지 로드 시 현재 위치 반영
+  window.addEventListener('load', () => {
+    // 상단 고정 헤더가 있으면 오프셋 조절
+    const current = sections.find(sec => {
+      const rect = sec.getBoundingClientRect();
+      const vpCenter = window.innerHeight / 2;
+      return rect.top <= vpCenter && rect.bottom >= vpCenter;
+    });
+    if (current) {
+      const link = document.querySelector(`nav a[href="#${current.id}"]`);
+      navLinks.forEach(a => a.classList.remove('active'));
+      link?.classList.add('active');
+    }
+  });
+
+  // (선택) 부드러운 스크롤
+  navLinks.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 })();
