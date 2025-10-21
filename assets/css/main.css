@@ -349,7 +349,6 @@ nav > a.active::after {background-color: var(--accent-color);}
 .portfolio {
   padding: 60px 0;
   overflow: clip;
-  /* background-color: aquamarine; */
 }
 .section-title {
   text-align: center;
@@ -418,82 +417,185 @@ nav > a.active::after {background-color: var(--accent-color);}
 .portfolio .portfolio-item .thumb{
   position: relative;
   overflow: hidden;
-  border-radius: 16px;              /* 필요 없으면 제거 */
+  border-radius: 16px;            
 }
-
-/* 링크가 영역 전체 차지 */
-.portfolio .portfolio-item .thumb-link{
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* 이미지: 카드 호버 시 어둡게 (확대 원하면 scale 추가) */
-.portfolio .portfolio-item .thumb img{
-  display:block; width:100%; height:100%; object-fit: cover;
-  transition: filter .35s ease, transform .35s ease;
+.portfolio .portfolio-item .thumb img {
+  display: block; 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 .portfolio .portfolio-item .thumb:hover img,
 .portfolio .portfolio-item .thumb-link:focus-visible img{
-  filter: brightness(.55);
-  /* transform: scale(1.03); */
+  filter: brightness(0.55);
+  transform: scale(1.03);
 }
-
-/* 중앙 버튼(초기: 흰 테두리, 투명 배경) */
-.portfolio .portfolio-item .thumb-badge{
-  position:absolute; left:50%; top:50%;
-  transform: translate(-50%, -50%) scale(.96);
+.portfolio .portfolio-item .thumb-badge {
+  position: absolute; 
+  left: 50%; 
+  top: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0;
-
-  padding: 12px 18px;
-  border-radius: 999px;
-  border: 1px solid #fff;
-  color:#fff; font-weight:700; letter-spacing:.2px;
-
-  background: transparent;          /* 투명 */
-  transition: opacity .28s ease, transform .28s ease, color .28s ease, border-color .28s ease;
-  overflow: hidden;                 /* 내부 채움 애니메이션 마스크 */
-  pointer-events: auto;             /* 버튼 위 호버 감지 필요하므로 auto */
-  z-index: 2;                       /* 이미지 위 */
+  padding: 10px 25px;
+  border-radius: 50px;
+  border: 1.5px solid var(--white);
+  color: var(--white); 
+  letter-spacing: 0.2px;
+  background: transparent;         
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+  overflow: hidden;               
+  pointer-events: auto;            
+  z-index: 2;                       
 }
-
-/* 버튼 내부 채우기: 왼→오 */
-.portfolio .portfolio-item .thumb-badge::before{
-  content:"";
-  position:absolute; inset:0;
-  background: linear-gradient(90deg, rgba(50,115,255,.95), rgba(0,90,255,.95));
+.portfolio .portfolio-item .thumb-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent-color);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform .38s ease;
-  z-index: -1;                      /* 텍스트 위로 나오지 않게 뒤로 */
+  transition: transform 0.4s ease;
+  z-index: -1;                     
 }
-
-/* 카드 호버 시 버튼 등장 */
 .portfolio .portfolio-item .thumb:hover .thumb-badge,
-.portfolio .portfolio-item .thumb-link:focus-visible .thumb-badge{
+.portfolio .portfolio-item .thumb-link:focus-visible .thumb-badge {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+.portfolio .portfolio-item .thumb-badge:hover::before{transform: scaleX(1);}
+.portfolio .portfolio-item .thumb-badge:hover{border-color: transparent;}
 
-/* 버튼 자체 호버 시: 배경이 왼→오로 채워짐 */
-.portfolio .portfolio-item .thumb-badge:hover::before{
-  transform: scaleX(1);
+
+
+/* project detail */
+.web-wrap {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.web-wrap .wrap-left {
+  width: 45%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0167B5;
+  color: var(--white);
+}
+.web-wrap .wrap-left .text_wrap {width: calc(100% - 200px)}
+.web-wrap .wrap-left .text_wrap > p:first-child {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
-/* (선택) 배경이 찰 때 테두리를 감추고 싶다면 */
-.portfolio .portfolio-item .thumb-badge:hover{
-  border-color: transparent;
+.web-wrap .wrap-left .text_wrap h1 {
+  font-size: 3.75rem;
+  font-weight: 700;
+  margin-bottom: 0;
 }
-
-/* 모션 민감 사용자 배려 */
-@media (prefers-reduced-motion: reduce){
-  .portfolio .portfolio-item .thumb *{ transition: none !important; }
+.web-wrap .wrap-left .info {margin: 40px 0;}
+.web-wrap .wrap-left .info > p {
+  margin-bottom: 12px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
 }
-
-
-
-
+.web-wrap .wrap-left .info > p:last-child {margin-bottom: 0;}
+.web-wrap .text .info > p > span {
+  display: inline-block;
+  width: 100px;
+}
+.web-wrap .wrap-left .overview {
+  line-height: 1.7;
+  word-break: keep-all;
+}
+.web-wrap .wrap-left .link {
+  margin-top: 40px;
+  display: flex;
+}
+.web-wrap .wrap-left .link a {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border-radius:30px;
+  border:1px solid var(--white);
+  transition: background-color 0.5s;
+}
+.web-wrap .wrap-left .link > a > img {
+    width: 20px;
+}
+.web-wrap .wrap-left .link a:hover {background-color: rgba(255,255,255,0.1);
+}
+.web-wrap .wrap-left .link a:last-child {margin: 0;}
+.web-wrap .wrap-left .link a span {
+  margin-left: 8px;
+  font-size: 0.875rem;
+  text-wrap: nowrap;
+}
+.web-wrap .website-link {
+  width: 60%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.web-wrap .website-link .wrap-right {
+  height:100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.web-wrap .website-link .wrap-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.web-wrap .website-link .wrap-right .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 50;
+}
+.web-wrap .website-link .right-title {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left :0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    padding-top: 320px;
+}
+.web-wrap .website-link .right-title h2 {
+  font-size: 5rem; 
+  font-weight: 700; 
+  color: #fff;
+}
+.web-wrap .website-link .right-title > a {
+  color: #fff; 
+  font-size: 1.25rem; 
+  font-weight: 500;
+  display: flex; 
+  flex-flow: column nowrap; 
+  align-items: center;
+  transition: margin-left 0.4s, opacity 0.4s;
+}
+.web-wrap .website-link .right-title > a:hover {margin-left: 20px; opacity: 0.8;}
+.web-wrap .website-link .right-title > a::after {
+    content: '';
+    display: inline-block;
+    background-image:url(../img/go_link.png);
+    margin-top: -10px; margin-left: 6px;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 17px;
+    background-size: cover;
+} 
 
 
 
