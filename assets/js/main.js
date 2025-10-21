@@ -45,29 +45,6 @@
     });
   }
 
-  // Initiate Pure Counter
-  new PureCounter();
-
-  // Animate the skills items on reveal
-  let skillsAnimation = document.querySelectorAll('.skills-animation');
-  skillsAnimation.forEach((item) => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
-      }
-    });
-  });
-
-  //Initiate glightbox
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
   // Init isotope layout and filters
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
@@ -99,23 +76,6 @@
 
   });
 
-  // Init swiper sliders
-  function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
-
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
-      } else {
-        new Swiper(swiperElement, config);
-      }
-    });
-  }
-
-  window.addEventListener("load", initSwiper);
-
   // Correct scrolling position upon page load for URLs containing hash links.
   window.addEventListener('load', function(e) {
     if (window.location.hash) {
@@ -132,26 +92,7 @@
     }
   });
 
-  // Navmenu Scrollspy
-  let navmenulinks = document.querySelectorAll('.navmenu a');
-
-  function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
-      if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
-      } else {
-        navmenulink.classList.remove('active');
-      }
-    })
-  }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
-
+ 
   //nav hover 시 글씨 나타나기
   const nav = document.querySelector('nav')
   const nav_a = nav.querySelectorAll('nav > a')
@@ -168,13 +109,13 @@
       })
   }
 
-    // nav 링크와 타깃 섹션 매핑
+
+  // nav 링크와 타깃 섹션 매핑
   const navLinks = [...document.querySelectorAll('nav a')];
   const sections = navLinks
-    .map(a => document.querySelector(a.getAttribute('href'))) // #home 등
+    .map(a => document.querySelector(a.getAttribute('href'))) 
     .filter(Boolean);
 
-  // 관찰 옵션: 뷰포트 중앙 근처에 들어오면 active
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const id = entry.target.getAttribute('id');
@@ -182,23 +123,19 @@
       if (!link) return;
 
       if (entry.isIntersecting) {
-        // 모두 제거 후 현재만 active
         navLinks.forEach(a => a.classList.remove('active'));
         link.classList.add('active');
       }
     });
   }, {
     root: null,
-    // 섹션의 중앙이 보일 때 반응하도록 여백 조정
     rootMargin: '-40% 0px -40% 0px',
     threshold: 0.0
   });
 
   sections.forEach(sec => io.observe(sec));
 
-  // (선택) 페이지 로드 시 현재 위치 반영
   window.addEventListener('load', () => {
-    // 상단 고정 헤더가 있으면 오프셋 조절
     const current = sections.find(sec => {
       const rect = sec.getBoundingClientRect();
       const vpCenter = window.innerHeight / 2;
@@ -211,7 +148,6 @@
     }
   });
 
-  // (선택) 부드러운 스크롤
   navLinks.forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
@@ -220,22 +156,21 @@
     });
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // nav 숨기기
+  const navEl = document.querySelector('nav');
+  const web1 = document.getElementById('web1');
+  
+  if (navEl && web1) {
+    const hideOnWeb1 = new IntersectionObserver(([entry]) => {
+      const hide = entry.isIntersecting;
+      navEl.classList.toggle('is-hidden-on-web1', hide);
+      navEl.setAttribute('aria-hidden', hide ? 'true' : 'false');
+      if (hide) navEl.setAttribute('inert', '');
+      else navEl.removeAttribute('inert');
+    }, {
+      threshold: 0.40,         
+      root: null,
+      rootMargin: '0px'
+    });
+    hideOnWeb1.observe(web1);}
 })();
