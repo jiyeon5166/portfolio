@@ -145,6 +145,9 @@ nav.is-hidden-on-web1{
   max-width: 1920px; 
   margin: 0 auto;     
 }
+.profile .content {
+  margin: 0 auto;
+}
 .profile .content h2 {
   font-size: 2rem;
   font-weight: 700;
