@@ -156,21 +156,5 @@
     });
   });
 
-  // nav 숨기기
-  const navEl = document.querySelector('nav');
-  const web1 = document.getElementById('web1');
-  
-  if (navEl && web1) {
-    const hideOnWeb1 = new IntersectionObserver(([entry]) => {
-      const hide = entry.isIntersecting;
-      navEl.classList.toggle('is-hidden-on-web1', hide);
-      navEl.setAttribute('aria-hidden', hide ? 'true' : 'false');
-      if (hide) navEl.setAttribute('inert', '');
-      else navEl.removeAttribute('inert');
-    }, {
-      threshold: 0.40,         
-      root: null,
-      rootMargin: '0px'
-    });
-    hideOnWeb1.observe(web1);}
+
 })();
