@@ -7,7 +7,7 @@ header {
   padding: 60px 0;
   
 }
-header .text {
+header .header-text {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -336,7 +336,7 @@ nav > a.active::after {background-color: #001E36;}
 
 
 /* project */
-.portfolio {
+/* .portfolio {
   padding: 60px 0;
   overflow: clip;
 }
@@ -444,7 +444,7 @@ nav > a.active::after {background-color: #001E36;}
   transform: translate(-50%, -50%) scale(1);
 }
 .portfolio .portfolio-item .thumb-badge:hover::before{transform: scaleX(1);}
-.portfolio .portfolio-item .thumb-badge:hover{border-color: transparent;}
+.portfolio .portfolio-item .thumb-badge:hover{border-color: transparent;}  */
 
 /* project detail */
 .web-wrap {
@@ -452,7 +452,7 @@ nav > a.active::after {background-color: #001E36;}
   display: flex;
   align-items: center;
 }
-.wrap-left {
+.text {
   width: 45%;
   min-height: 100svh;
   display: flex;
@@ -461,7 +461,7 @@ nav > a.active::after {background-color: #001E36;}
   background-color: #0167B5;
   color: var(--white);
 }
-.wrap-left .text-wrap {width: calc(100% - 300px);}
+.text .text-wrap {width: calc(100% - 300px);}
 .text-wrap .sub-tit {
   font-size: 1.125rem;
   font-weight: 500;
@@ -505,32 +505,32 @@ nav > a.active::after {background-color: #001E36;}
 .text-wrap .link a:last-child {margin: 0;}
 .text-wrap .link a img {width: 20px;}
 .text-wrap .link a span {margin-left: 8px;}
-.wrap-right {
+.wrap-link {
   width: 55%;
   height: 100svh;
   overflow: hidden;
   position: relative;
 }
-.wrap-right .bg {
+.wrap-link .bg {
   position: relative;          
   height: 100%;
   display: block;              
   overflow: hidden;
 
 }
-.wrap-right .bg img {
+.wrap-link .bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.wrap-right .bg::after {
+.wrap-link .bg::after {
   content: ""; 
   position: absolute; 
   inset: 0;
   background: rgba(0,0,0,0.5); 
   pointer-events: none;
 }
-.wrap-right .title-link {
+.wrap-link .title-link {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -543,11 +543,11 @@ nav > a.active::after {background-color: #001E36;}
   width:100%;
   color: var(--white);
 }
-.wrap-right .title-link h3 {
+.wrap-link .title-link h3 {
   font-size: 4.5rem;
   font-weight: 700;
 } 
-.wrap-right .title-link a {
+.wrap-link .title-link a {
   font-size: 1.3rem;
   font-weight: 500;
   display: flex; 
@@ -556,11 +556,11 @@ nav > a.active::after {background-color: #001E36;}
   margin-top: 24px;
   transition: transform 0.25s
 }
-.wrap-right .title-link a:hover {transform: translateX(16px);}
-.wrap-right .title-link a::after {
+.wrap-link .title-link a:hover {transform: translateX(16px);}
+.wrap-link .title-link a::after {
     content: ''; 
     display: inline-block;
-    background-image: url(../img/go_link.png); 
+    background-image: url(../img/go_link_right.png); 
     margin-top: -5px; 
     margin-left: 20px;
     background-repeat: no-repeat; 
@@ -568,19 +568,41 @@ nav > a.active::after {background-color: #001E36;}
     height: 17px; 
     background-size: cover;
 }
+
+.web2 .text {
+  background-color: #812825;
+}
+.web2 .wrap-link .title-link a::after {
+    content: ''; 
+    display: inline-block;
+    background-image: url(../img/go_link_left.png);
+    margin-top: -5px; 
+    margin-right: 30px;
+    background-repeat: no-repeat; 
+    width: 200px; 
+    height: 17px; 
+    background-size: cover;
+}
+.web2 .wrap-link .title-link a:hover {transform: translateX(-16px);}
+
+
+
+
+
+
 @media screen and (min-width:992px) and (max-width:1585px) {
-  .wrap-left .text-wrap {width: calc(100% - 60px);}
+  .text .text-wrap {width: calc(100% - 60px);}
 }
 @media screen and (min-width:768px) and (max-width: 991px) {
   .web-wrap {flex-direction: column;}
-  .wrap-left {width: 100%;}
-  .wrap-right {width: 100%;}
+  .text {width: 100%;}
+  .wrap-link {width: 100%;}
 }
 @media screen and (max-width: 767px) {
   .web-wrap {flex-direction: column;}
-  .wrap-left {width: 100%;}
-  .wrap-left .text-wrap {text-align: center;}
-  .wrap-right {width: 100%;}
+  .text {width: 100%;}
+  .text .text-wrap {text-align: center;}
+  .wrap-link {width: 100%;}
   .text-wrap .info p span {
     display: block;
     width: auto;
